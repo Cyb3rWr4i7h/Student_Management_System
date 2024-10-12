@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        function updateSignupFields() {
+            const studentRadio = document.getElementById('student');
+            const usernameLabel = document.getElementById('username-label');
+            const usernameInput = document.getElementById('username');
+            
+            if (studentRadio.checked) {
+                usernameLabel.textContent = 'Student ID';
+                usernameInput.placeholder = 'Enter your Student ID';
+            } else {
+                usernameLabel.textContent = 'Professor ID';
+                usernameInput.placeholder = 'Enter your Professor ID';
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #2d2f48;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .title {
+            text-align: center;
+            color: #34495e;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-bottom: 8px;
+        }
+        
+        .role-options {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .role-options label {
+            color: #7f8c8d;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #d6dbdf;
+            background-color: #f9f9f9;
+            color: #2c3e50;
+            border-radius: 8px;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+            background-color: #eef5fc;
+        }
+        
+        .btn-primary {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .signup-text {
+            text-align: center;
+            margin-top: 15px;
+            color: #7f8c8d;
+        }
+        
+        .signup-text a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        
+        .signup-text a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+        
+            .title {
+                font-size: 24px;
+            }
+        
+            .btn-primary {
+                font-size: 16px;
+            }
+        }        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Sign Up</h1>
+        <form action="" method="POST" class="signup-form">
+            <!-- Role Selection -->
+            <div class="form-group">
+                <label for="role">Sign Up as:</label>
+                <div class="role-options">
+                    <label>
+                        <input type="radio" id="student" name="role" value="student" checked onclick="updateSignupFields()"> Student
+                    </label>
+                    <label>
+                        <input type="radio" id="professor" name="role" value="professor" onclick="updateSignupFields()"> Professor
+                    </label>
+                </div>
+            </div>
+
+            <!-- Name Field -->
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Username Field (Student ID/Professor ID) -->
+            <div class="form-group">
+                <label id="username-label" for="username">Student ID</label>
+                <input type="text" id="username" name="username" placeholder="Enter your Student ID" required>
+            </div>
+
+            <!-- Email Field -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Password Field -->
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required>
+            </div>
+
+            <!-- Confirm Password Field -->
+            <div class="form-group">
+                <label for="confirm_password">Confirm Password</label>
+                <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn-primary">Sign Up</button>
+
+            <!-- Link to Login Page -->
+            <p class="signup-text">Already have an account? <a href="/">Login</a></p>
+        </form>
+    </div>
+</body>
+</html>
