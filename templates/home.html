@@ -3,140 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Management System Dashboard</title>
+    <title>Student Management System</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            color: #333;
+            display: flex;
         }
 
-        .dashboard {
-            max-width: 1200px;
-            margin: auto;
+        .navbar {
+            background-color: #2d2f48;
+            width: 250px;
+            transition: width 0.3s;
+            overflow: hidden; 
+            height: 100vh; 
+            position: fixed; 
+            border-right: 2px solid #3c6382; 
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); 
         }
 
-        header {
+        .navbar.shrink {
+            width: 80px; 
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .navbar li {
+            padding: 15px;
+            text-align: center; 
+            border-bottom: 1px solid #3c6382; 
+        }
+
+        .navbar li:last-child {
+            border-bottom: none; 
+        }
+
+        .navbar a {
+            color: #eaeaea; 
+            text-decoration: none; 
+            display: flex; 
+            align-items: center; 
+            transition: background-color 0.3s; 
+            border-radius: 5px; 
+            padding: 10px; 
+        }
+
+        .navbar a:hover {
+            background-color: #3c6382; 
+            color: #fff; 
+        }
+
+        .navbar h2 {
             text-align: center;
+            color: #eaeaea;
+            margin: 15px 0;
+        }
+
+        .icon {
+            margin-right: 10px; 
+            font-size: 20px; 
+        }
+
+        .container {
+            flex-grow: 1; 
+            margin-left: 270px; 
+            margin-top: 20px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1); 
+            background-color: #ffffff; 
+        }
+
+        .title {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
             margin-bottom: 20px;
         }
 
-        .cards {
+        .info-section {
             display: flex;
             justify-content: space-between;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 10px;
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .card h2 {
-            margin: 0 0 10px;
-        }
-
-        .tables {
             margin-top: 20px;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .info-card {
+            background-color: #e9ecef; 
+            border-radius: 5px; 
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
+            padding: 20px;
+            flex: 1; 
+            margin: 0 10px; 
+            text-align: center; 
         }
 
-        table, th, td {
-            border: 1px solid #dddddd;
+        .info-card h2 {
+            color: #333; 
         }
 
-        th, td {
-            padding: 8px;
-            text-align: left;
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #666; 
         }
 
-        th {
-            background-color: #f2f2f2;
+        .toggle-btn {
+            background-color: #3c6382; 
+            color: #eaeaea; 
+            border: none;
+            border-radius: 5px; 
+            padding: 10px;
+            cursor: pointer; 
+            margin: 15px;
+            transition: background-color 0.3s; 
+        }
+
+        .toggle-btn:hover {
+            background-color: #2b4d61; 
         }
     </style>
 </head>
 <body>
-    <div class="dashboard">
-        <header>
-            <h1>Student Management System Dashboard</h1>
-        </header>
-        <div class="cards">
-            <div class="card">
-                <h2>Total Students</h2>
-                <p id="total-students">0</p>
-            </div>
-            <div class="card">
-                <h2>Active Students</h2>
-                <p id="active-students">0</p>
-            </div>
-            <div class="card">
-                <h2>Courses Offered</h2>
-                <p id="courses-offered">0</p>
-            </div>
-            <div class="card">
-                <h2>Graduated Students</h2>
-                <p id="graduated-students">0</p>
-            </div>
-        </div>
-        <div class="tables">
-            <h2>Recent Students</h2>
-            <table id="recent-students">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Course</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Student data will be inserted here dynamically -->
-                </tbody>
-            </table>
-        </div>
+    <div class="navbar" id="navbar">
+        <h2>SMS</h2>
+        <ul>
+            <li><a href="login.html"><span class="icon">🏠</span>Home</a></li>
+            <li><a href="register.html"><span class="icon">📝</span>Register</a></li>
+            <li><a href="about.html"><span class="icon">ℹ️</span>About</a></li>
+            <li><a href="contact.html"><span class="icon">📞</span>Contact Us</a></li>
+        </ul>
     </div>
+
+    <div class="container">
+        <header>
+            <h1 class="title">Welcome to the Student Management System</h1>
+        </header>
+
+        <button class="toggle-btn" onclick="toggleNavbar()">Toggle Menu</button>
+
+        <div class="info-section">
+            <div class="info-card">
+                <h2>Pending Notifications</h2>
+                <p id="pending-notifications">3 Notifications</p>
+            </div>
+            <div class="info-card">
+                <h2>CPI</h2>
+                <p id="cpi">3.5</p>
+            </div>
+            <div class="info-card">
+                <h2>Other Information</h2>
+                <p>Update your profile regularly.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2024 Student Management System. All rights reserved.</p>
+        </footer>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Sample data for demonstration
-            const data = {
-                totalStudents: 150,
-                activeStudents: 120,
-                coursesOffered: 10,
-                graduatedStudents: 30,
-                recentStudents: [
-                    { id: 1, name: "Alice Johnson", course: "Computer Science", status: "Active" },
-                    { id: 2, name: "Bob Smith", course: "Mathematics", status: "Graduated" },
-                    { id: 3, name: "Charlie Brown", course: "Physics", status: "Active" },
-                    { id: 4, name: "Diana Prince", course: "Chemistry", status: "Active" },
-                    { id: 5, name: "Ethan Hunt", course: "Biology", status: "Graduated" }
-                ]
-            };
+        function toggleNavbar() {
+            const navbar = document.getElementById('navbar');
+            navbar.classList.toggle('shrink');
+        }
 
-            // Populate the dashboard
-            document.getElementById('total-students').textContent = data.totalStudents;
-            document.getElementById('active-students').textContent = data.activeStudents;
-            document.getElementById('courses-offered').textContent = data.coursesOffered;
-            document.getElementById('graduated-students').textContent = data.graduatedStudents;
-
-            const recentStudentsTable = document.getElementById('recent-students').getElementsByTagName('tbody')[0];
-            data.recentStudents.forEach(student => {
-                const row = recentStudentsTable.insertRow();
-                row.insertCell(0).textContent = student.id;
-                row.insertCell(1).textContent = student.name;
-                row.insertCell(2).textContent = student.course;
-                row.insertCell(3).textContent = student.status;
-            });
-        });
+        document.getElementById('pending-notifications').textContent = "2 New Notifications";
+        document.getElementById('cpi').textContent = "3.8";
     </script>
 </body>
 </html>
