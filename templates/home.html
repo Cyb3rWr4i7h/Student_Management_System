@@ -82,6 +82,19 @@
             margin-bottom: 20px;
         }
 
+        .user-info {
+            padding: 20px;
+            border-radius: 10px; 
+            background-color: #2d2f48; 
+            color: #eaeaea; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px; /* Spacing below the user info */
+        }
+
+        .user-info h3 {
+            margin: 5px 0; 
+        }
+
         .info-section {
             display: flex;
             justify-content: space-between;
@@ -100,6 +113,14 @@
 
         .info-card h2 {
             color: #333; 
+        }
+
+        .chart-section {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 5px; 
+            background-color: #e9ecef;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
         }
 
         .footer {
@@ -128,17 +149,25 @@
     <div class="navbar" id="navbar">
         <h2>SMS</h2>
         <ul>
-            <li><a href="login.html">Home</a></li>
-            <li><a href="register.html">Register</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="/login">Home</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/attendance">Attendance</a></li>
+            <li><a href="/courses">My Courses</a></li>
+            <li><a href="/timetable">Time Table</a></li>
+            <li><a href="/notification">Notifications</a></li>
+            <li><a href="/logout">Logout</a></li>
         </ul>
     </div>
 
     <div class="container">
-        <header>
-            <h1 class="title">Welcome to the Student Management System</h1>
-        </header>
+        <div class="user-info">
+            <h3>User: Chizuru Mizuhara</h3>
+            <h3>Roll No: 123456</h3>
+            <h3>Department: Computer Science</h3>
+            <h3>Semester: 3</h3>
+        </div>
+
+        <h1 class="title">Welcome to the Student Management System</h1>
 
         <button class="toggle-btn" onclick="toggleNavbar()">Toggle Menu</button>
 
@@ -151,10 +180,11 @@
                 <h2>CPI</h2>
                 <p id="cpi">3.5</p>
             </div>
-            <div class="info-card">
-                <h2>Other Information</h2>
-                <p>Update your profile regularly.</p>
-            </div>
+        </div>
+
+        <div class="chart-section">
+            <h2>Attendance Chart</h2>
+            <canvas id="attendanceChart" width="400" height="200"></canvas>
         </div>
 
         <footer class="footer">
@@ -170,6 +200,31 @@
 
         document.getElementById('pending-notifications').textContent = "2 New Notifications";
         document.getElementById('cpi').textContent = "3.8";
+
+        // Example of how to draw an attendance chart using Chart.js
+        const ctx = document.getElementById('attendanceChart').getContext('2d');
+        const attendanceChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4'],
+                datasets: [{
+                    label: 'Attendance',
+                    data: [80, 90, 85, 70],
+                    backgroundColor: 'rgba(60, 99, 130, 0.5)',
+                    borderColor: 'rgba(60, 99, 130, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100
+                    }
+                }
+            }
+        });
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>
